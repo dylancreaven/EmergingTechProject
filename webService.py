@@ -3,8 +3,6 @@ import flask as fl
 from flask import request
 import tensorflow as tf
 
-
-
 #Create a new web app.
 app = fl.Flask(__name__)
 
