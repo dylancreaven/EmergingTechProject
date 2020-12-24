@@ -20,3 +20,4 @@ def powerOutput():
     return {'prediction':predList[0]} #get first element of prediction list
 if __name__== '__main__':
     app.run(debug=True)
+    #time 30.05
