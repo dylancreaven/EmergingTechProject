@@ -18,6 +18,15 @@ def powerOutput():
     prediction = model.predict([windSpeed]) #get prediction using data model & wind speed input
     predList = prediction.tolist() # convert prediciton to list
     return {'prediction':predList[0]} #get first element of prediction list
+
+@app.route("/powerOutWithoutZeros", methods=["POST"])
+def powerOutputWithoutZeroes():
+    windSpeed = float(request.get_json()["value"]) #gets wind speed input from index.htmlk
+    model=tf.keras.models.load_model("powerprodWithoutZeros.h5")#gets data model from  
+    prediction = model.predict([windSpeed]) #get prediction using data model & wind speed input
+    predList = prediction.tolist() # convert prediciton to list
+    return {'prediction':predList[0]} #get first element of prediction list
+
 if __name__== '__main__':
     app.run(debug=True)
     #time 30.05

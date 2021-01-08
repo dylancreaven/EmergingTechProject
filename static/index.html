@@ -70,6 +70,7 @@ hr {
           <input type="text" class="form-control" id="speedInput"  placeholder="Please Enter in speed of the wind here: ">
         </div></br>
         <button id="submit-btn" type="button" class="submitbtn">Submit</button>
+        <button id="submit-btn-upgraded-model" type="button" class="submitbtn">Submit With Upgraded Model</button>
     </form>
     <p class="text-center" >The output is <div class="font-weight-bold" id="output"></div> watts</p>
 
@@ -91,7 +92,24 @@ hr {
       document.getElementById("output").innerHTML=resp.prediction[0]
       console.log(resp)
 }
+async function postDataWithoutZeros() 
+      {
+        const value = document.getElementById('speedInput').value;
+        const response = await fetch('/powerOutWithoutZeros', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({value})
+        
+    });
+      var resp = await response.json();
+      document.getElementById("output").innerHTML=resp.prediction[0]
+      console.log(resp)
+}
+
 document.getElementById("submit-btn").addEventListener("click", postData);
+document.getElementById("submit-btn-upgraded-model").addEventListener("click", postDataWithoutZeros);
     </script>
   </body>
 </html>
